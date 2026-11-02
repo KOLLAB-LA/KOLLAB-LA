@@ -284,6 +284,19 @@
     "kh_journal": {
       "type": "kollab-home-journal",
       "blocks": {
+        "story2": {
+          "type": "story",
+          "settings": {
+            "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call",
+            "style": "black",
+            "tag": "Collaboration",
+            "t1": "Sukoshi",
+            "t2": "x Kollab",
+            "cap": "New York 2026 - 2027",
+            "url": "/blogs/event/why-we-host-k-beauty-workshops",
+            "aria": "Sukoshi X Kollab Collaboration Pop Up"
+          }
+        },
         "story3": {
           "type": "story",
           "settings": {
@@ -310,25 +323,12 @@
             "url": "/blogs/event/k-beauty-dallas-texas-bloom-haus-pop-up",
             "aria": "K-Beauty in Dallas: What a 3,000-Person Pop-Up Showed About the Next U.S. Market"
           }
-        },
-        "story2": {
-          "type": "story",
-          "settings": {
-            "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call",
-            "style": "black",
-            "tag": "Collaboration",
-            "t1": "Sukoshi",
-            "t2": "x Kollab",
-            "cap": "New York 2026 - 2027",
-            "url": "/blogs/event/why-we-host-k-beauty-workshops",
-            "aria": "Sukoshi X Kollab Collaboration Pop Up"
-          }
         }
       },
       "block_order": [
+        "story2",
         "story3",
-        "story1",
-        "story2"
+        "story1"
       ],
       "settings": {
         "h1": "Notes from",
