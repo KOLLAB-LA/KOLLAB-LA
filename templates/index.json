@@ -314,15 +314,14 @@
         "story2": {
           "type": "story",
           "settings": {
-            "article": "event/why-we-host-k-beauty-workshops",
-            "image": "shopify://shop_images/KellyRidgeway_052926_Kollab_DemafWorkshop-143.jpg",
+            "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call",
             "style": "black",
-            "tag": "Workshops",
-            "t1": "Why we",
-            "t2": "host workshops",
-            "cap": "Workshops",
+            "tag": "Collaboration",
+            "t1": "Sukoshi",
+            "t2": "x Kollab",
+            "cap": "New York 2026 - 2027",
             "url": "/blogs/event/why-we-host-k-beauty-workshops",
-            "aria": "Why We Host K-Beauty Workshops"
+            "aria": "Sukoshi X Kollab Collaboration Pop Up"
           }
         }
       },
