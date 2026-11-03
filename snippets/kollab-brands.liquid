@@ -1,0 +1,304 @@
+{% comment %} KOLLAB · For Brands (EN) · built 2026-11-01 · do not edit in the theme editor, edit this snippet {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+.kb,.kb *{box-sizing:border-box}
+.kb{--red:#dd1e26;--deep:#b0151c;--ink:#1b1b1b;--white:#f9f9f9;--mute:#6e6e6e;--hair:#e3e3e1;--soft:#e8565c;--pale:#fbdcdd;
+  background:var(--white);color:var(--ink);font-family:Enkel,'Inter',system-ui,sans-serif;font-weight:300;line-height:1.5;width:100%;overflow-x:hidden}
+.kb p,.kb h1,.kb h2,.kb h3,.kb ul,.kb ol{margin:0}
+.kb a{color:inherit;text-decoration:none}
+.kb .kb-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.kb .kb-sec{padding:96px 0}
+@media(max-width:767px){.kb .kb-sec{padding:64px 0}}
+.kb .kb-dark{background:var(--ink);color:var(--white)}
+.kb .kb-red{background:var(--red);color:var(--white)}
+.kb .kb-white{background:#fff;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.kb .kb-h1,.kb .kb-h2,.kb .kb-h3,.kb .kb-serif{font-family:'Instrument Serif',Georgia,serif !important;font-weight:400 !important;font-style:normal;letter-spacing:-0.02em;text-transform:none !important;color:inherit !important}
+.kb .kb-h1{font-size:clamp(40px,6vw,84px);line-height:1.02}
+.kb .kb-h2{font-size:clamp(34px,4vw,48px);line-height:1.1}
+.kb .kb-h3{font-size:clamp(22px,2.4vw,28px);line-height:1.2}
+.kb .kb-i{font-style:italic;color:var(--red)}
+.kb .kb-dark .kb-i,.kb .kb-red .kb-i{color:var(--red)}
+.kb .kb-red .kb-i{color:var(--white);font-style:italic}
+.kb .kb-eye{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;color:var(--deep);display:flex;align-items:center;gap:10px}
+.kb .kb-dark .kb-eye{color:var(--soft)}
+.kb .kb-red .kb-eye{color:var(--white)}
+.kb .kb-star{width:16px;height:16px;fill:var(--red);flex:none}
+.kb .kb-lead{font-size:18px;line-height:1.6;max-width:560px}
+.kb .kb-lead span,.kb .kb-h1 span,.kb .kb-h2 span{display:block}
+.kb .kb-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 26px;border-radius:9999px;font-size:16px;font-weight:400;border:1px solid transparent;cursor:pointer;font-family:inherit;transition:background .2s,color .2s}
+.kb .kb-btn-red{background:var(--red);color:var(--white)}.kb .kb-btn-red:hover{background:var(--deep)}
+.kb .kb-btn-ghost{background:transparent;color:var(--white);border-color:var(--white)}.kb .kb-btn-ghost:hover{background:var(--white);color:var(--ink)}
+.kb .kb-btn-black{background:var(--ink);color:var(--white)}.kb .kb-btn-black:hover{background:#000}
+.kb .kb-row{display:flex;flex-wrap:wrap;gap:12px}
+.kb .kb-grid{display:grid;gap:24px}
+.kb .kb-g3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.kb .kb-g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.kb .kb-g5{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+/* nav */
+.kb .kb-nav{background:var(--ink);color:var(--white);padding:16px 0}
+.kb .kb-nav .kb-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.kb .kb-nav nav{display:flex;flex-wrap:wrap;gap:22px;font-size:15px;font-weight:400}
+.kb .kb-nav .kb-lang{font-size:14px;display:flex;gap:8px;align-items:center;color:#c2c2c0}
+.kb .kb-nav .kb-lang b{color:var(--white);font-weight:400;border-bottom:1px solid var(--red);padding-bottom:2px}
+.kb .kb-nav .kb-right{display:flex;align-items:center;gap:16px}
+.kb .kb-nav .kb-btn{min-height:44px;padding:10px 20px;font-size:15px}
+@media(max-width:900px){.kb .kb-nav nav{display:none}}
+/* hero */
+.kb .kb-hero{padding:72px 0 96px}
+.kb .kb-hero .kb-cols{display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.kb .kb-hero .kb-copy{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px}
+.kb .kb-hero .kb-pic{flex:1 1 380px;min-width:0;position:relative;max-width:520px}
+.kb .kb-hero .kb-pic img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.kb .kb-hero .kb-pic:after{content:"";position:absolute;left:-16px;bottom:32px;width:120px;height:2px;background:var(--red)}
+.kb .kb-tag{position:absolute;right:-10px;top:-16px;background:var(--red);color:var(--white);border-radius:9999px;padding:8px 16px;font-size:13px;font-weight:400}
+.kb .kb-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid #3a3a3a;margin-top:72px}
+.kb .kb-stats div{padding:28px 24px 0 0}
+.kb .kb-stats b{display:block;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:56px;line-height:1;letter-spacing:-0.025em;font-variant-numeric:tabular-nums}
+.kb .kb-stats span{display:block;font-size:14px;color:#c2c2c0;margin-top:6px}
+/* cards */
+.kb .kb-qcard{background:#fff;border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--red);padding:32px;display:flex;flex-direction:column;gap:16px}
+.kb .kb-q{font-family:'Instrument Serif',Georgia,serif !important;font-weight:400 !important;font-size:clamp(24px,2.4vw,30px);line-height:1.2;font-style:italic}
+.kb .kb-card{border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.kb .kb-card-l{background:var(--white);border:1px solid var(--hair)}
+.kb .kb-card-r{background:var(--red);color:var(--white)}
+.kb .kb-card-d{background:var(--ink);color:var(--white)}
+.kb .kb-num{font-family:'Instrument Serif',Georgia,serif;font-size:56px;line-height:1;color:var(--red)}
+.kb .kb-card-r .kb-num{color:var(--white)}.kb .kb-card-d .kb-num{color:var(--soft)}
+.kb .kb-card ul{padding-left:18px;font-size:15px;line-height:1.85}
+.kb .kb-pill{display:inline-block;border-radius:9999px;padding:6px 12px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:var(--white);color:var(--deep)}
+.kb .kb-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));border:1.5px solid var(--ink)}
+.kb .kb-two>div{padding:36px;display:flex;flex-direction:column;gap:14px}
+.kb .kb-two>div+div{background:var(--white);border-top:1.5px solid var(--ink)}
+@media(min-width:700px){.kb .kb-two>div+div{border-top:0;border-left:1.5px solid var(--ink)}}
+.kb .kb-body{font-size:16px;line-height:1.6;color:#3a3a3a}
+.kb .kb-dark .kb-body,.kb .kb-red .kb-body,.kb .kb-card-r .kb-body,.kb .kb-card-d .kb-body{color:#e3e3e1}
+/* sister */
+.kb .kb-sister{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--red)}
+.kb .kb-sister>div{padding:36px;display:flex;flex-direction:column;gap:18px;background:#fff}
+.kb .kb-sister>div+div{background:var(--ink);color:var(--white)}
+.kb .kb-sister ul{padding-left:18px;font-size:15px;line-height:1.85}
+.kb .kb-link{color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;align-self:flex-start;font-size:15px;font-weight:400}
+.kb .kb-chips{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.kb .kb-chips .kb-lbl{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-right:8px}
+.kb .kb-chip{border-radius:9999px;padding:8px 16px;font-size:14px;font-weight:400;background:var(--red);color:var(--white)}
+.kb .kb-chip-o{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.kb .kb-flow{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(20px,2vw,26px);line-height:1.3}
+.kb .kb-flow i{font-style:normal;color:var(--red)}
+/* boarding pass */
+.kb .kb-pass{background:#fff;border:1.5px solid var(--ink);display:flex;flex-direction:column;color:var(--ink)}
+.kb .kb-pass-hd{background:var(--ink);color:var(--white);padding:12px 18px;display:flex;justify-content:space-between;font-size:13px;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.kb .kb-pass-bd{padding:20px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.kb .kb-route{font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1}
+.kb .kb-route i{font-style:normal;color:var(--red)}
+.kb .kb-pass-ft{border-top:1.5px dashed var(--ink);padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--mute);letter-spacing:.06em}
+.kb .kb-pass-now{background:var(--red);color:var(--white);box-shadow:10px 10px 0 var(--ink)}
+.kb .kb-pass-now .kb-route i{color:var(--ink)}
+.kb .kb-pass-now .kb-pass-ft{border-color:var(--white);color:var(--white)}
+.kb .kb-pass-now .kb-pass-ft a{background:var(--white);color:var(--deep);border-radius:9999px;padding:8px 14px;font-size:13px;font-weight:500}
+/* watch */
+.kb .kb-reel{display:flex;flex-direction:column;gap:12px;color:var(--white)}
+.kb .kb-reel .kb-frame{position:relative;background:#2b2b2b;border:1px solid #3a3a3a;min-height:420px}
+.kb .kb-reel .kb-frame img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.kb .kb-reel blockquote.instagram-media{margin:0 !important;min-width:0 !important;width:100% !important;max-width:100% !important;border-radius:0 !important;box-shadow:none !important}
+.kb .kb-views{position:absolute;left:12px;top:12px;z-index:2;background:var(--red);color:var(--white);border-radius:9999px;padding:6px 12px;font-size:12px;font-weight:500;font-variant-numeric:tabular-nums}
+.kb .kb-reel p{font-size:14px;line-height:1.4}
+.kb .kb-reel p span{display:block;color:var(--mute)}
+/* process */
+.kb .kb-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));list-style:none;padding:0}
+.kb .kb-steps li{border-top:6px solid var(--ink);padding:28px 28px 0 0;display:flex;flex-direction:column;gap:10px}
+.kb .kb-steps li:nth-child(odd){border-top-color:var(--red)}
+.kb .kb-steps b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:48px;line-height:1;color:var(--red)}
+.kb .kb-steps strong{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:24px}
+.kb .kb-steps span{font-size:15px;line-height:1.6;color:#3a3a3a}
+/* nyc band */
+.kb .kb-nyc .kb-wrap{display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between}
+.kb .kb-nyc .kb-copy{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.kb .kb-nyc .kb-pic{flex:1 1 320px;min-width:0;max-width:440px}
+.kb .kb-nyc .kb-pic img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--soft)}
+.kb .kb-logos{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.kb .kb-logos img{height:34px;width:auto;display:block}
+.kb .kb-logos .kb-x{font-family:'Instrument Serif',Georgia,serif;font-size:28px}
+.kb .kb-logos .kb-wm{font-family:'Instrument Serif',Georgia,serif;font-size:30px;letter-spacing:.06em}
+.kb .kb-micro{font-size:13px;color:var(--pale)}
+/* faq */
+.kb .kb-faq{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+.kb details{border-bottom:1px solid var(--ink)}
+.kb details:first-of-type{border-top:1px solid var(--ink)}
+.kb summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(19px,2vw,22px);line-height:1.3}
+.kb summary::-webkit-details-marker{display:none}
+.kb summary:after{content:"+";font-family:'Instrument Serif',Georgia,serif;font-size:32px;line-height:1;color:var(--red);flex:none}
+.kb details[open] summary:after{content:"\2212"}
+.kb details p{padding:0 48px 24px 0;font-size:16px;line-height:1.7;color:#3a3a3a}
+/* contact */
+.kb .kb-contact .kb-wrap{display:flex;flex-wrap:wrap;gap:56px}
+.kb .kb-contact .kb-intro{flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.kb .kb-form{flex:1 1 560px;min-width:0;background:var(--white);color:var(--ink);border-radius:12px;padding:36px;box-shadow:10px 10px 0 var(--red)}
+.kb .kb-form form{display:flex;flex-direction:column;gap:20px}
+.kb .kb-form .kb-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kb .kb-form label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:400}
+.kb .kb-form input[type=text],.kb .kb-form input[type=email],.kb .kb-form select,.kb .kb-form textarea{border:1px solid #c2c2c0;border-radius:6px;padding:12px;font-size:15px;background:#fff;color:var(--ink);min-height:44px;font-family:inherit;width:100%}
+.kb .kb-form input:focus,.kb .kb-form select:focus,.kb .kb-form textarea:focus{outline:none;border-color:var(--red)}
+.kb .kb-form fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.kb .kb-form legend{font-size:14px;font-weight:400;padding:0;margin-bottom:10px}
+.kb .kb-form .kb-opts{display:flex;flex-wrap:wrap;gap:8px}
+.kb .kb-form .kb-opt{position:relative}
+.kb .kb-form .kb-opt input{position:absolute;opacity:0;width:0;height:0}
+.kb .kb-form .kb-opt span{display:inline-flex;align-items:center;min-height:44px;border-radius:9999px;padding:10px 16px;font-size:14px;cursor:pointer;background:#fff;color:var(--ink);border:1px solid #c2c2c0}
+.kb .kb-form .kb-opt input:checked+span{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.kb .kb-form .kb-opt input:focus-visible+span{outline:2px solid var(--red);outline-offset:2px}
+.kb .kb-form .kb-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.kb .kb-form .kb-note{font-size:13px;color:var(--mute)}
+.kb .kb-form .kb-ok{display:flex;flex-direction:column;gap:14px;padding:12px 0}
+.kb .kb-form .kb-err{background:var(--pale);color:var(--deep);border-radius:6px;padding:12px;font-size:14px}
+.kb .kb-contact .kb-intro a{border-bottom:1px solid var(--red)}
+/* footer */
+.kb .kb-foot-bar{background:var(--white);padding:40px 0;border-top:1px solid var(--hair)}
+.kb .kb-foot-bar .kb-wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+.kb .kb-foot-bar img{height:34px;width:auto}
+.kb .kb-foot-bar .kb-links{display:flex;flex-wrap:wrap;gap:24px;font-size:14px;color:var(--mute)}
+</style>
+<div class="kb" id="top">
+
+<header class="kb-nav"><div class="kb-wrap">
+<a href="/" aria-label="KOLLAB"><img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/Kollab_LOGO-02.png?v=1761728108&width=600" alt="KOLLAB" style="height:34px;width:auto;display:block"></a>
+<nav aria-label="Sections"><a href="#services">What we do</a> <a href="#work">Past pop-ups</a> <a href="#nyc">NYC Station</a> <a href="#process">How it works</a> <a href="#faq">FAQ</a></nav>
+<div class="kb-right"><div class="kb-lang"><b>EN</b><span>/</span><a href="/pages/brands-ko">한국어</a></div><a class="kb-btn kb-btn-red" href="#contact">Book an intro call</a></div>
+</div></header>
+
+<section class="kb-dark kb-hero"><div class="kb-wrap">
+<div class="kb-cols">
+<div class="kb-copy">
+<p class="kb-eye"><svg class="kb-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>For Korean and K-beauty brands</p>
+<h1 class="kb-h1"><span>Enter the U.S. market</span><span class="kb-i">from a real shelf, not a slide deck.</span></h1>
+<p class="kb-lead"><span>Pop-ups in LA and New York. Creators who show up. Content shot on the floor.</span><span>One team, from the first call to the report your HQ reads.</span></p>
+<div class="kb-row"><a class="kb-btn kb-btn-red" href="#contact">Request a brand deck</a><a class="kb-btn kb-btn-ghost" href="#work">See past pop-ups</a></div>
+</div>
+<div class="kb-pic"><img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/SUN04969_compressed.jpg?v=1791534106&width=1400" alt="Crowd at the Bloom Haus Dallas K-beauty pop-up" loading="eager"><span class="kb-tag">Now booking · NYC</span></div>
+</div>
+<div class="kb-stats"><div><b>80+</b><span>brands have kollabed with us</span></div><div><b>30+</b><span>events and pop-ups hosted</span></div><div><b>5,000+</b><span>creators in our network</span></div><div><b>3,000+</b><span>visitors in three days, Dallas</span></div></div>
+</div></section>
+
+<section class="kb-sec"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:760px"><p class="kb-eye">You asked</p><h2 class="kb-h2"><span>Every brand asks us the same three questions.</span><span class="kb-i" style="color:var(--ink)">Here are the honest answers.</span></h2></div>
+<div class="kb-grid kb-g3"><div class="kb-qcard"><p class="kb-q">“How do we launch in the U.S.?”</p><p class="kb-body">In front of shoppers, on day one. We put your product on a shelf or in a pop-up, bring creators to it, and tell you what sold and why. Dallas: 3,000 visitors in three days.</p></div><div class="kb-qcard"><p class="kb-q">“Who can run our pop-up in LA or New York?”</p><p class="kb-body">We do, start to finish: concept, venue, build, tickets, guest list, content. Thirty events so far in LA, Atlanta and Dallas. New York opens Dec 7.</p></div><div class="kb-qcard"><p class="kb-q">“Which agency does online and offline?”</p><p class="kb-body">Ours. The team that plans the pop-up also shoots, edits and posts it. The event feeds the content, the content fills the next event, and you get one report.</p></div></div>
+</div></section>
+
+<section class="kb-sec kb-white" id="services"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px"><h2 class="kb-h2" style="display:flex;align-items:center;gap:14px"><svg class="kb-star" style="width:28px;height:28px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>Your pop-up, your way.</h2><p class="kb-body" style="color:var(--mute);max-width:440px">Pick one, or combine them. Packages and pricing come with the brand deck after an intro call.</p></div>
+<div class="kb-grid kb-g3"><div class="kb-card kb-card-l"><span class="kb-num">01</span><h3 class="kb-h3">Pop-ups &amp; activations</h3><p class="kb-body">Your own pop-up, or a spot in a KOLLAB-run city stop like Seoul Social Club and Bloom Haus.</p><ul><li>Concept, venue and space design</li><li>Ticketing and RSVPs on Luma</li><li>Creator and press guest list</li><li>On-site content capture</li></ul></div><div class="kb-card kb-card-r"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><span class="kb-num">02</span><span class="kb-pill">Now booking</span></div><h3 class="kb-h3">Retail test in New York</h3><p class="kb-body">SUKOSHI × KOLLAB STATION puts a new K-brand on a Manhattan shelf every week this holiday season.</p><ul><li>SUKOSHI, Upper East Side · Dec 7 – Jan 31</li><li>Two-week shelf slots, a curated line-up</li><li>January slots add a featured booth week</li><li>KOLLAB-run marketing included</li></ul></div><div class="kb-card kb-card-d"><span class="kb-num">03</span><h3 class="kb-h3">Online + offline marketing</h3><p class="kb-body">Campaigns built around what your brand needs, with the event at the center.</p><ul><li>Paid creator collaborations, matched on fit</li><li>Workshops and beauty masterclasses</li><li>Short-form content for TikTok and Reels</li><li>Newsletter and social launch</li></ul></div></div>
+<div class="kb-two">
+<div><p class="kb-eye">Solo</p><h3 class="kb-h3" style="font-size:clamp(26px,3vw,34px)">One brand. <span class="kb-i" style="color:var(--ink)">One world.</span></h3><p class="kb-body">The whole space tells your story, floor to ceiling. Your launch, your line-up, your guest list.</p></div>
+<div><p class="kb-eye">Collab</p><h3 class="kb-h3" style="font-size:clamp(26px,3vw,34px)">One theme. <span class="kb-i" style="color:var(--ink)">A few brands.</span></h3><p class="kb-body">A collagen pop-up. A sunscreen seminar. A scalp-care week. Share the crowd and the cost; keep your own spotlight.</p></div>
+</div>
+</div></section>
+
+<section class="kb-sec" id="skoop"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;max-width:640px"><p class="kb-eye">Sister companies · One owner</p><h2 class="kb-h2"><span>Online roots.</span><span class="kb-i" style="color:var(--ink)">Offline stage.</span></h2></div>
+<p class="kb-body" style="max-width:460px"><span style="display:block">KOLLAB and SkoopMarketing are sister companies under the same ownership. SkoopMarketing has made content and social campaigns for brands in Southern California since 2018.</span><span style="display:block">Same owner, same team: the people who plan your pop-up also shoot, edit and post it.</span></p>
+</div>
+<div class="kb-sister">
+<div><p class="kb-eye">ONLINE</p><h3 class="kb-serif" style="font-size:40px;line-height:1;font-family:'Instrument Serif',Georgia,serif !important;font-weight:400 !important">SkoopMarketing</h3><p class="kb-body">Content and social media for brands that want to be seen, then remembered.</p><ul><li>Social media marketing and strategy</li><li>Photo, video and short-form production</li><li>Influencer marketing</li><li>Brand, design and web</li><li>AI marketing</li></ul><a class="kb-link" href="https://skoopmarketing.com" target="_blank" rel="noopener">Visit skoopmarketing.com</a></div>
+<div><p class="kb-eye">OFFLINE</p><h3 class="kb-serif" style="font-size:40px;line-height:1;font-family:'Instrument Serif',Georgia,serif !important;font-weight:400 !important">KOLLAB</h3><p class="kb-body">Pop-ups, shelves and events where people meet your product in person.</p><ul><li>Pop-ups in LA, New York and new cities</li><li>Retail tests like KOLLAB STATION</li><li>Workshops and beauty masterclasses</li><li>Creator nights and launch events</li></ul></div>
+</div>
+<div class="kb-chips"><span class="kb-lbl">Brands SkoopMarketing has worked with</span><span class="kb-chip kb-chip-o">Olive Young</span><span class="kb-chip kb-chip-o">Hanwha</span><span class="kb-chip kb-chip-o">Lotte</span><span class="kb-chip kb-chip-o">CheongKwanJang</span><span class="kb-chip kb-chip-o">SIDIZ</span><span class="kb-chip kb-chip-o">Navien Mate</span><span class="kb-chip kb-chip-o">Hanskin</span><span class="kb-chip kb-chip-o">VODANA</span><span class="kb-chip kb-chip-o">Erigeron</span><span class="kb-chip kb-chip-o">Plodica</span><span class="kb-chip kb-chip-o">Dodo Skin</span><span class="kb-chip kb-chip-o">Dookki</span></div>
+<div class="kb-flow"><span>One brief</span><i>→</i><span>content that fills the event</span><i>→</i><span>an event that feeds the content</span><i>→</i><span>one report.</span></div>
+</div></section>
+
+<section class="kb-sec kb-white" id="work"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:12px"><p class="kb-eye">Past pop-ups</p><h2 class="kb-h2"><span>Seoul to the U.S.,</span><span class="kb-i" style="color:var(--ink)">one city at a time.</span></h2></div>
+<div class="kb-grid kb-g4"><div class="kb-pass"><div class="kb-pass-hd"><span>JUN 18–20</span><span>BOARDED</span></div><div class="kb-pass-bd"><p class="kb-route">SEL <i>✈</i> DFW</p><h3 class="kb-h3" style="font-size:20px">Bloom Haus · Dallas</h3><p class="kb-body" style="font-size:15px">3,000+ visitors in three days, and a four-hour line at the door.</p></div><div class="kb-pass-ft"><span>GATE DALLAS</span><span>K-BEAUTY POP-UP</span></div></div><div class="kb-pass"><div class="kb-pass-hd"><span>OCT 13–17</span><span>BOARDED</span></div><div class="kb-pass-bd"><p class="kb-route">SEL <i>✈</i> LAX</p><h3 class="kb-h3" style="font-size:20px">LA:ON Global K-Zone · LA</h3><p class="kb-body" style="font-size:15px">New K-beauty brands, DIY workshop stations and AI skin analysis.</p></div><div class="kb-pass-ft"><span>GATE KCCLA</span><span>K-CULTURE POP-UP</span></div></div><div class="kb-pass"><div class="kb-pass-hd"><span>OCT 16–18</span><span>BOARDED</span></div><div class="kb-pass-bd"><p class="kb-route">SEL <i>✈</i> ATL</p><h3 class="kb-h3" style="font-size:20px">Seoul Social Club · Atlanta</h3><p class="kb-body" style="font-size:15px">K-beauty, snacks, fashion and a passport stamp trail at Ponce City Market.</p></div><div class="kb-pass-ft"><span>GATE PCM</span><span>CITY POP-UP</span></div></div><div class="kb-pass kb-pass-now"><div class="kb-pass-hd"><span>DEC 7 – JAN 31</span><span style="color:#e8565c">NOW BOARDING</span></div><div class="kb-pass-bd"><p class="kb-route">SEL <i>✈</i> JFK</p><h3 class="kb-h3" style="font-size:20px">SUKOSHI × KOLLAB STATION · NYC</h3><p class="kb-body" style="font-size:15px">Eight weeks on the Upper East Side, a new K-brand every week.</p></div><div class="kb-pass-ft"><span>GATE UES</span><a href="#nyc">Get a slot</a></div></div></div>
+<div class="kb-chips" style="padding-top:8px"><span class="kb-lbl">Brands we kollab with</span><span class="kb-chip">COSRX</span><span class="kb-chip">DE:MAF</span><span class="kb-chip">MUZMAK</span><span class="kb-chip">RAUME</span><span class="kb-chip">SUPER-SAVE</span><span class="kb-chip">SÉLEVÉ</span><span class="kb-chip">Treats Lab</span><span class="kb-chip">UAHAGE</span></div>
+</div></section>
+
+<section class="kb-sec kb-dark" id="watch"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px"><p class="kb-eye">On the floor</p><h2 class="kb-h2"><span>Don't take our word for it.</span><span class="kb-i" style="color:var(--white)">Take theirs.</span></h2></div>
+<p class="kb-body" style="max-width:420px;color:#c2c2c0">Our Dallas pop-up, and what creators posted from Atlanta on their own accounts, uncut.</p>
+</div>
+<div class="kb-grid kb-g5"><div class="kb-reel"><div class="kb-frame"><img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/SUN04936_compressed.jpg?v=1791534106&width=1000" alt="Guests at the Bloom Haus Dallas gift table" loading="lazy"></div><p>Bloom Haus · Dallas<span>KOLLAB pop-up · June 2026</span></p></div>
+<div class="kb-reel"><div class="kb-frame"><span class="kb-views">51.4K plays</span><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dek0XwcRVfH/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Dek0XwcRVfH/">Instagram</a></blockquote></div><p>“POV: found Seoul in Atlanta”<span>Creator UGC · Seoul Social Club ATL</span></p></div>
+<div class="kb-reel"><div class="kb-frame"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DepxpP6PIIk/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DepxpP6PIIk/">Instagram</a></blockquote></div><p>“KOLLAB brought Korea to ATL”<span>Creator UGC · Ponce City Market</span></p></div>
+<div class="kb-reel"><div class="kb-frame"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Dez52uFRk5T/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/Dez52uFRk5T/">Instagram</a></blockquote></div><p>“Cutest K-beauty pop up in ATL”<span>Creator UGC · Seoul Social Club ATL</span></p></div>
+<div class="kb-reel"><div class="kb-frame"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DfFQIneKLcP/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DfFQIneKLcP/">Instagram</a></blockquote></div><p>“Here is what I got”<span>Creator haul · Seoul Social Club ATL</span></p></div></div>
+</div></section>
+
+<section class="kb-sec kb-white" id="process"><div class="kb-wrap" style="display:flex;flex-direction:column;gap:40px">
+<h2 class="kb-h2"><span>How it works.</span><span class="kb-i" style="color:var(--mute)">Four steps, one team.</span></h2>
+<ol class="kb-steps"><li><b>01</b><strong>Intro call</strong><span>Your goals, budget, timing and the city that fits. In English or Korean.</span></li><li><b>02</b><strong>Plan</strong><span>Concept, venue, creator line-up and a content plan you approve.</span></li><li><b>03</b><strong>Run</strong><span>Build, open the doors, run the floor and capture content every day.</span></li><li><b>04</b><strong>Content &amp; report</strong><span>Edited content for your channels and a results report you can take to HQ.</span></li></ol>
+</div></section>
+
+<section class="kb-sec kb-red kb-nyc" id="nyc"><div class="kb-wrap">
+<div class="kb-copy">
+<p class="kb-eye">Now booking · New York</p>
+<div class="kb-logos"><span class="kb-wm">SUKOSHI</span><span class="kb-x">×</span><img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/Kollab_LOGO-02.png?v=1761728108&width=600" alt="KOLLAB"></div>
+<h2 class="kb-h2"><span>KOLLAB STATION,</span><span class="kb-i">Upper East Side.</span></h2>
+<p class="kb-lead"><span>Dec 7 – Jan 31 at SUKOSHI, 1542 3rd Ave. Eight weeks, two-week shelf slots.</span><span>We read every application and choose the line-up with SUKOSHI.</span></p>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><a class="kb-btn kb-btn-black" href="https://tally.so/r/xVXoLk" target="_blank" rel="noopener" style="min-height:52px;padding:16px 28px">Apply for the line-up</a><span class="kb-micro">Takes about a minute. Brand deck comes at the meeting.</span></div>
+</div>
+<div class="kb-pic"><img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/KakaoTalk_Photo_2026-10-21-15-54-02_013.jpg?v=1792900707&width=1000" alt="Seoul Social Club passport stamps" loading="lazy"></div>
+</div></section>
+
+<section class="kb-sec" id="faq"><div class="kb-wrap"><div class="kb-faq">
+<h2 class="kb-h2">Questions from brand teams</h2>
+<div><details><summary>Our team is in Korea. Can we still work with you?</summary><p>Yes. We plan with you over video calls in Korean or English, and you ship the product to us.</p></details><details><summary>Which cities can you run a pop-up in?</summary><p>We have run pop-ups in Los Angeles, Atlanta and Dallas, and open KOLLAB STATION in New York on Dec 7. More U.S. cities are planned for 2027.</p></details><details><summary>What does it cost?</summary><p>It depends on the format, city and length. A solo pop-up is one option; a collab pop-up with a few brands around one theme, like a collagen pop-up or a sunscreen seminar, is another. After a short intro call we send our brand deck with packages that fit your goals and budget.</p></details><details><summary>Can you bring creators and influencers?</summary><p>Yes. We work with a network of 5,000+ creators and match them to your brand on fit, not just follower count.</p></details></div>
+</div></div></section>
+
+<section class="kb-sec kb-dark kb-contact" id="contact"><div class="kb-wrap">
+<div class="kb-intro">
+<h2 class="kb-h2" style="font-size:clamp(36px,5vw,60px)"><span>Your next city</span><span class="kb-i">starts with a message.</span></h2>
+<p class="kb-body" style="font-size:17px"><span style="display:block">A real person on our team reads every one.</span><span style="display:block">You get next steps and our brand deck in reply.</span></p>
+<p style="font-size:15px;color:#c2c2c0">Prefer email? <a href="mailto:info@kollab-la.com">info@kollab-la.com</a></p>
+</div>
+<div class="kb-form">
+{% form 'contact', id: 'kb-brand-form', class: 'kb-brand-form' %}
+{% if form.posted_successfully? %}
+<div class="kb-ok"><svg class="kb-star" style="width:40px;height:40px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg><p class="kb-serif" style="font-size:36px;line-height:1.15">Thank you. <span class="kb-i">Let's kollab.</span></p><p class="kb-body">Your message is with our team. Watch your inbox for our reply and the brand deck.</p></div>
+<script>try{window.oaiq&&oaiq('track','lead_created',{type:'brand_inquiry'});}catch(e){}</script>
+{% else %}
+{% if form.errors %}<div class="kb-err">{{ form.errors | default_errors }}</div>{% endif %}
+<input type="hidden" name="contact[Form]" value="Brand inquiry (EN)">
+<input type="hidden" name="contact[Interests]" id="kb-interests" value="">
+<input type="hidden" name="contact[Source]" id="kb-source" value="">
+<div class="kb-fields">
+<label>Brand name *<input type="text" name="contact[Brand]" required placeholder="e.g. Glow Lab"></label>
+<label>Your name *<input type="text" name="contact[name]" required></label>
+<label>Work email *<input type="email" name="contact[email]" required autocomplete="email"></label>
+<label>Website or Instagram *<input type="text" name="contact[Website or Instagram]" required></label>
+</div>
+<fieldset><legend>What are you looking for? Pick any.</legend><div class="kb-opts"><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Pop-up in LA"><span>Pop-up in LA</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Pop-up in New York"><span>Pop-up in New York</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="SUKOSHI pop-up (NYC shelf)"><span>SUKOSHI pop-up (NYC shelf)</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Pop-up in another city"><span>Pop-up in another city</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Seminar or workshop"><span>Seminar or workshop</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Creator &amp; influencer campaign"><span>Creator &amp; influencer campaign</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Online + offline campaign"><span>Online + offline campaign</span></label><label class="kb-opt"><input type="checkbox" name="kb-interest" value="Not sure yet"><span>Not sure yet</span></label></div></fieldset>
+<div class="kb-fields">
+<label>Where is your team based?<select name="contact[Team based in]"><option>Korea</option><option>United States</option><option>Elsewhere</option></select></label>
+<label>When do you want to start?<select name="contact[Start timing]"><option>Within 3 months</option><option>In 3–6 months</option><option>Just exploring</option></select></label>
+</div>
+<label>Anything else we should know?<textarea name="contact[body]" rows="4" placeholder="Products, target city, budget range, dates…"></textarea></label>
+<div class="kb-foot"><span class="kb-note">We only use this to reply to you.</span><button type="submit" class="kb-btn kb-btn-red">Send to the KOLLAB team</button></div>
+{% endif %}
+{% endform %}
+</div>
+</div></section>
+
+<footer class="kb-foot-bar"><div class="kb-wrap">
+<img src="https://cdn.shopify.com/s/files/1/0588/2088/6577/files/Kollab_LOGO-01_551f6dc3-b25b-4223-9c11-6c3d3a3fc4a9.png?v=1781104622&width=600" alt="KOLLAB">
+<div class="kb-links"><span>Los Angeles · New York</span><a href="mailto:info@kollab-la.com">info@kollab-la.com</a><a href="https://instagram.com/kollab_la" target="_blank" rel="noopener">Instagram @kollab_la</a><a href="https://www.tiktok.com/@kollab_la" target="_blank" rel="noopener">TikTok @kollab_la</a></div>
+</div></footer>
+
+</div>
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+(function(){
+  var f=document.getElementById('kb-brand-form');
+  if(!f)return;
+  try{
+    var q=new URLSearchParams(location.search),src=[];
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(q.get(k))src.push(k+'='+q.get(k));});
+    if(!src.length&&document.referrer)src.push('ref='+document.referrer);
+    var s=document.getElementById('kb-source');if(s)s.value=src.join('&');
+  }catch(e){}
+  f.addEventListener('submit',function(){
+    var v=[];f.querySelectorAll('input[name="kb-interest"]:checked').forEach(function(c){v.push(c.value);});
+    var h=document.getElementById('kb-interests');if(h)h.value=v.join(', ');
+  });
+})();
+</script>

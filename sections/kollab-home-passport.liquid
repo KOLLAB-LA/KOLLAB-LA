@@ -1,0 +1,305 @@
+{%- render 'kollab-home-head' -%}
+{%- assign s = section.settings -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+{%- assign n = section.blocks.size -%}
+{%- assign rots = '-2,1.5,-1,2,-1.5,1' | split: ',' -%}
+{%- assign dys = '14,0,22,6,18,10' | split: ',' -%}
+{%- capture slots -%}{%- endcapture -%}
+{%- capture tickets -%}{%- endcapture -%}
+{%- capture rows -%}{%- endcapture -%}
+{%- for block in section.blocks -%}
+  {%- assign b = block.settings -%}
+  {%- assign i = forloop.index0 -%}
+  {%- assign st = 'later' -%}
+  {%- if b.end_date != blank -%}{%- if b.end_date < today -%}{%- assign st = 'landed' -%}{%- else -%}{%- assign st = 'boarding' -%}{%- endif -%}{%- endif -%}
+  {%- if st == 'landed' -%}{%- assign lbl = s.lbl_landed -%}{%- elsif st == 'boarding' -%}{%- assign lbl = s.lbl_boarding -%}{%- else -%}{%- assign lbl = b.later_label -%}{%- endif -%}
+  {%- assign art = b.article -%}
+  {%- assign art_url = '' -%}{%- if art != blank -%}{%- assign art_url = art.url -%}{%- endif -%}
+  {%- assign img = b.image -%}
+  {%- if img == blank and art != blank and art.image -%}{%- assign img = art.image -%}{%- endif -%}
+  {%- assign himg = b.hover_image -%}
+  {%- if himg == blank -%}{%- if b.image != blank and art != blank and art.image -%}{%- assign himg = art.image -%}{%- else -%}{%- assign himg = img -%}{%- endif -%}{%- endif -%}
+  {%- assign recap_href = art_url | default: b.cta_link -%}
+  {%- assign next_href = b.cta_link | default: art_url -%}
+  {%- if st == 'landed' -%}{%- assign href = recap_href -%}{%- assign cta = s.recap_label -%}{%- else -%}{%- assign href = next_href -%}{%- assign cta = b.cta_label -%}{%- endif -%}
+  {%- assign log_href = art_url | default: b.cta_link -%}
+  {%- assign fx = n | minus: 1 | minus: i | times: 230 -%}
+  {%- assign delay = i | times: 130 | plus: 2300 -%}
+  {%- capture slots -%}{{ slots }}<div class="kp-slot" data-st="{{ st }}" data-i="{{ i }}"><span class="kp-s1" data-kp-slbl>{% if st == 'landed' %}LANDED{% else %}NEXT{% endif %}</span><span class="kp-s2">{{ b.code | escape }}</span><span class="kp-s3">{{ b.month_label | escape }}</span></div>{%- endcapture -%}
+  {%- capture tickets -%}{{ tickets }}
+  <div class="kp-tk" data-st="{{ st }}" data-i="{{ i }}" data-end="{{ b.end_date | escape }}" data-recap="{{ recap_href }}" style="--i:{{ i }};--r:{{ rots[i] | default: 0 }}deg;--dy:{{ dys[i] | default: 0 }}px;--fx:{{ fx }}px;--fd:{{ delay }}ms" {{ block.shopify_attributes }}>
+    <div class="kp-fly">
+      <article class="kp-pass" aria-label="{{ b.title | escape }}">
+        <div class="kp-bar"><span>KOLLAB Air</span><span class="kp-st"><span data-kp-lbl>{{ lbl | escape }}</span><svg class="kp-bob" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span></div>
+        <div class="kp-poster">
+          {%- if img != blank -%}{{ img | image_url: width: 720 | image_tag: loading: 'lazy', alt: b.title, widths: '360,540,720', sizes: '(max-width: 980px) 70vw, 240px', class: 'kp-img' }}{%- else -%}<span class="kp-code">{{ b.code | escape }}</span><span class="kp-soon">{{ s.no_photo | escape }}</span>{%- endif -%}
+          <div class="kp-vid" aria-hidden="true">
+            {%- if b.video != blank -%}{{ b.video | video_tag: muted: true, loop: true, playsinline: true, preload: 'none', class: 'kp-v' }}{%- elsif himg != blank -%}<img class="kp-kb" src="{{ himg | image_url: width: 720 }}" alt="" loading="lazy">{%- else -%}<div class="kp-marq">{% for k in (1..5) %}{{ b.city | escape }} · {{ b.dates_full | escape }} · {% endfor %}</div>{%- endif -%}
+            <div class="kp-rec"><b></b><span>{% if st == 'landed' %}Recap{% else %}Teaser{% endif %}</span></div>
+            <div class="kp-prog"><i></i></div>
+          </div>
+          <button type="button" class="kp-play" data-kp-play aria-label="Play the {{ b.city | escape }} clip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></button>
+        </div>
+        <div class="kp-body">
+          <div class="kp-route"><div><small>FROM</small><b>{{ s.from | escape }}</b></div><svg class="kp-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div class="r"><small>TO</small><b>{{ b.code | escape }}</b></div></div>
+          <h3 class="kp-h3">{{ b.title | escape }}</h3>
+          <div class="kp-meta"><div><small>DATE</small><b>{{ b.date_label | escape }}</b></div><div><small>SEAT</small><b>0{{ forloop.index }}A</b></div></div>
+        </div>
+        <div class="kp-tear"></div>
+        <div class="kp-stub"><span class="kp-barcode" aria-hidden="true"></span>{%- if href != blank -%}<a class="kp-cta" href="{{ href }}" data-kp-cta>{{ cta | escape }}</a>{%- endif -%}</div>
+      </article>
+    </div>
+  </div>{%- endcapture -%}
+  {%- capture rows -%}{{ rows }}
+  <div class="kp-rowwrap">
+    <button type="button" class="kp-row" data-st="{{ st }}" data-i="{{ i }}">
+      <span class="kp-no">0{{ forloop.index }}</span>
+      <span class="kp-th">{%- if img != blank -%}{{ img | image_url: width: 240 | image_tag: loading: 'lazy', alt: b.title }}{%- else -%}<em>{{ b.code | escape }}</em>{%- endif -%}</span>
+      <span class="kp-rt">{{ b.title | escape }}</span>
+      <span class="kp-rd">{{ b.dates_full | escape }}</span>
+      <span class="kp-chip"><span data-kp-lbl>{{ lbl | escape }}</span><svg class="kp-bob" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span>
+    </button>
+    {%- if log_href != blank -%}<a class="kp-go-link" href="{{ log_href }}" aria-label="{{ b.title | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a>{%- endif -%}
+  </div>{%- endcapture -%}
+{%- endfor -%}
+
+<section class="kp" id="events" data-kp data-lbl-landed="{{ s.lbl_landed | escape }}" data-recap-label="{{ s.recap_label | escape }}" aria-labelledby="kp-t-{{ section.id }}">
+<style>
+.kp{--red:#DD1E26;--ink:#1B1B1B;--paper:#F9F9F9;--mute:#6E6E6E;--line:#E3E3E1;--kps:var(--serif,'Instrument Serif',Georgia,serif);--kpb:var(--sans,Enkel,Inter,system-ui,sans-serif);background:var(--paper);color:var(--ink);font-family:var(--kpb);font-weight:300;overflow:hidden;padding:88px max(16px,4vw) 96px}
+.kp *{box-sizing:border-box}
+.kp img{display:block;max-width:100%}
+.kp button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+.kp :focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.kp span,.kp b,.kp small,.kp em,.kp a,.kp button{font-family:inherit}
+.kp-wrap{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+.kp-top{display:flex;gap:48px;align-items:flex-end;justify-content:space-between}
+.kp-intro{display:flex;flex-direction:column;gap:18px;max-width:560px;min-width:0}
+.kp-kick{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.kp-kick svg{width:16px;height:16px;flex:none}
+.kp .kp-ttl{margin:0;font-family:var(--kps)!important;font-weight:400!important;font-size:64px!important;line-height:1.02!important;letter-spacing:-1.6px!important;text-transform:none!important;color:var(--ink)!important}
+.kp .kp-ttl em{font-family:var(--kps)!important;font-style:italic;color:var(--red)}
+.kp-lead{margin:0;font-size:17px;line-height:1.5;color:#3A3A3A;max-width:460px}
+.kp-lead span{display:block}
+.kp-replay{align-self:flex-start;border:1px solid var(--ink)!important;border-radius:9999px;padding:8px 16px!important;font-size:13px;min-height:36px;transition:background .2s,color .2s}
+.kp-replay:hover{background:var(--ink);color:var(--paper)}
+.kp-pp{flex:0 0 auto;width:min(480px,100%)}
+.kp-book{display:flex;border-radius:10px;box-shadow:10px 10px 0 var(--red);border:1.5px solid var(--ink);background:#fff;position:relative}
+.kp-pl{flex:1 1 50%;padding:20px 18px;border-right:1px dashed #C2C2C0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.kp-mini{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.kp-brand{font-family:var(--kps)!important;font-size:30px;line-height:1;letter-spacing:-.6px}
+.kp-dl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:11px;margin:4px 0 0}
+.kp-dl dt{color:var(--mute)}.kp-dl dd{margin:0}
+.kp-mrz{margin-top:auto;font-family:ui-monospace,Menlo,monospace!important;font-size:9px;letter-spacing:.08em;color:var(--mute);line-height:1.5;word-break:break-all}
+.kp-pr{flex:1 1 50%;padding:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:center;min-width:0;position:relative}
+.kp-slot{aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border:1.2px dashed #C2C2C0;color:#9A9A9A;transition:transform .4s,box-shadow .4s}
+.kp-slot[data-st=landed]{border:2.5px double var(--red);color:var(--red);transform:rotate(-10deg)}
+.kp-slot.is-act{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--ink);transform:scale(1.12)}
+.kp-s1{font-size:7px;letter-spacing:.12em;font-weight:500}
+.kp-s2{font-family:var(--kps)!important;font-size:19px;line-height:1;letter-spacing:-.3px}
+.kp-s3{font-size:7px;letter-spacing:.02em;white-space:nowrap}
+.kp-star{aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.kp-star svg{width:30px;height:30px}
+.kp-cover{position:absolute;inset:-1.5px -1.5px -1.5px -1px;background:var(--ink);border-radius:0 10px 10px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--paper);backface-visibility:hidden;transform-origin:left center;transform:perspective(1400px) rotateY(-178deg)}
+.kp-cover svg{width:44px;height:44px}
+.kp-cover .a{font-family:var(--kps)!important;font-size:26px;letter-spacing:-.4px}
+.kp-cover .b{font-size:9px;letter-spacing:.3em;text-transform:uppercase}
+.kp-stage{position:relative;height:640px;--w:calc((100% - (var(--n) - 1) * 44px) / var(--n))}
+.kp-tk{position:absolute;top:0;width:var(--w);left:calc(var(--i) * (var(--w) + 44px));z-index:calc(10 + var(--i));transform:translateY(var(--dy)) rotate(var(--r));transition:transform .55s cubic-bezier(.2,.9,.25,1),opacity .4s,filter .4s}
+.kp.has-act .kp-tk{opacity:.55;filter:grayscale(.6)}
+.kp.has-act .kp-tk.is-act{opacity:1;filter:none;z-index:30;transform:translateY(-18px) rotate(0) scale(1.07)}
+.kp-pass{position:relative;background:#fff;border:1.5px solid var(--ink);border-radius:14px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(27,27,27,.08);transition:box-shadow .4s}
+.kp-tk.is-act .kp-pass{box-shadow:10px 10px 0 var(--red)}
+.kp-bar{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:12px 12px 0 0;font-size:10px;letter-spacing:.14em;font-weight:500;text-transform:uppercase;background:var(--paper);color:var(--ink);border-bottom:1.5px dashed var(--ink)}
+[data-st=landed] .kp-bar{background:var(--ink);color:var(--paper);border:0}
+[data-st=boarding] .kp-bar{background:var(--red);color:var(--paper);border:0}
+.kp-st,.kp-chip{display:inline-flex;align-items:center;gap:6px}
+.kp-bob{display:none;width:15px;height:15px;fill:currentColor;transform-origin:50% 60%;animation:kp-bob 1.8s ease-in-out infinite}
+[data-st=boarding] .kp-bob{display:block}
+@keyframes kp-bob{0%,100%{transform:rotate(55deg)}50%{transform:rotate(65deg) translateY(-2px)}}
+.kp-poster{position:relative;height:250px;overflow:hidden;background:var(--ink);color:var(--paper)}
+[data-st=later] .kp-poster{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line)}
+.kp-poster .kp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.kp-code{position:absolute;left:14px;bottom:8px;font-family:var(--kps)!important;font-style:italic;font-size:88px;line-height:.9;letter-spacing:-2px}
+.kp-soon{position:absolute;left:14px;top:14px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.kp-vid{position:absolute;inset:0;background:var(--ink);color:var(--paper);opacity:0;transition:opacity .35s;overflow:hidden;pointer-events:none}
+.kp-tk.is-act .kp-vid,.kp-tk.seen .kp-vid{opacity:1}
+.kp-vid .kp-v,.kp-vid .kp-kb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.kp-kb{transform-origin:60% 40%;animation:kp-kb 9s ease-in-out infinite alternate;animation-play-state:paused}
+.kp-tk.is-act .kp-kb{animation-play-state:running}
+@keyframes kp-kb{to{transform:scale(1.18) translate(-3%,2%)}}
+.kp-marq{position:absolute;left:0;top:50%;white-space:nowrap;font-family:var(--kps)!important;font-style:italic;font-size:72px;line-height:1;letter-spacing:-1.4px;animation:kp-marq 9s linear infinite;animation-play-state:paused}
+.kp-tk.is-act .kp-marq{animation-play-state:running}
+@keyframes kp-marq{from{transform:translate(0,-55%)}to{transform:translate(-50%,-55%)}}
+.kp-rec{position:absolute;left:10px;top:10px;display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;background:rgba(27,27,27,.7);padding:5px 8px;border-radius:9999px}
+.kp-rec b{width:7px;height:7px;border-radius:50%;background:var(--paper)}
+.kp-tk.is-act .kp-rec b{background:var(--red);animation:kp-blink 1s steps(2) infinite}
+@keyframes kp-blink{50%{opacity:.15}}
+.kp-prog{position:absolute;left:12px;right:12px;bottom:12px;height:3px;background:rgba(249,249,249,.35);border-radius:3px;overflow:hidden}
+.kp-prog i{display:block;height:100%;background:var(--red);transform-origin:left;transform:scaleX(0);animation:kp-prog 8s linear infinite;animation-play-state:paused}
+.kp-tk.is-act .kp-prog i{animation-play-state:running}
+@keyframes kp-prog{to{transform:scaleX(1)}}
+.kp-play{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:9999px;border:1.5px solid var(--paper)!important;background:rgba(27,27,27,.55)!important;display:flex;align-items:center;justify-content:center;color:var(--paper)}
+.kp-play svg{width:14px;height:14px;fill:currentColor}
+.kp-body{padding:16px 16px 14px;display:flex;flex-direction:column;gap:14px}
+.kp-route{display:flex;align-items:flex-end;justify-content:space-between;gap:6px}
+.kp-route div,.kp-meta div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.kp-route .r{align-items:flex-end}
+.kp-route small,.kp-meta small{font-size:9px;letter-spacing:.14em;color:var(--mute)}
+.kp-route b{font-size:22px;font-weight:500;letter-spacing:.02em}
+.kp-plane{width:28px;height:20px;fill:var(--red);transform:rotate(90deg);margin-bottom:5px;flex:none}
+.kp .kp-h3{margin:0;font-family:var(--kps)!important;font-weight:400!important;font-size:24px!important;line-height:1.08!important;letter-spacing:-.3px!important;text-transform:none!important;color:var(--ink)!important;min-height:52px;text-wrap:balance}
+.kp-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-variant-numeric:tabular-nums}
+.kp-meta b{font-size:12px;font-weight:500}
+.kp-tear{position:relative;height:0;border-top:1.5px dashed #C2C2C0;margin:0 12px}
+.kp-tear:before,.kp-tear:after{content:"";position:absolute;top:-10px;width:18px;height:18px;border-radius:50%;background:var(--paper)}
+.kp-tear:before{left:-22px;border-right:1.5px solid var(--ink)}.kp-tear:after{right:-22px;border-left:1.5px solid var(--ink)}
+.kp-stub{display:flex;flex-direction:column;gap:12px;padding:14px 16px 16px}
+.kp-barcode{display:block;height:22px;background:repeating-linear-gradient(90deg,var(--ink) 0 1.2px,transparent 1.2px 3px,var(--ink) 3px 4px,transparent 4px 7px,var(--ink) 7px 9px,transparent 9px 11px)}
+.kp-cta{display:flex;align-items:center;justify-content:center;min-height:40px;padding:8px 16px;border-radius:9999px;font-size:13px;text-decoration:none!important;white-space:nowrap;border:1px solid var(--ink);color:var(--ink)!important;background:transparent;transition:background .2s,color .2s}
+.kp-cta:hover{background:var(--ink);color:var(--paper)!important}
+.kp-tk.is-act:not([data-st=landed]) .kp-cta{background:var(--red);border-color:var(--red);color:var(--paper)!important}
+.kp-log{display:flex;flex-direction:column}
+.kp-loghead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:12px;border-bottom:1.5px solid var(--ink);flex-wrap:wrap}
+.kp .kp-logt{margin:0;font-family:var(--heading,'Ethic Serif',var(--kps))!important;font-weight:400!important;font-size:22px!important;letter-spacing:-.2px!important;text-transform:none!important;color:var(--ink)!important}
+.kp-lognote{font-size:12px;color:var(--mute)}
+.kp-rowwrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;border-bottom:1px solid var(--line)}
+.kp-row{display:grid!important;grid-template-columns:40px 112px minmax(0,1fr) 220px 150px;align-items:center;gap:16px;padding:12px!important;min-height:44px;text-align:left;width:100%;transition:background .25s,color .25s}
+.kp-row:hover,.kp-row.is-act{background:var(--ink)!important;color:var(--paper)}
+.kp-no,.kp-rd{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.kp-rd{font-size:13px}
+.kp-row:hover .kp-no,.kp-row.is-act .kp-no,.kp-row:hover .kp-rd,.kp-row.is-act .kp-rd{color:#C2C2C0}
+.kp-th{display:block;width:100%;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--ink)}
+.kp-th img{width:100%;height:100%;object-fit:cover}
+.kp-th em{display:flex;width:100%;height:100%;align-items:center;justify-content:center;background:#fff;border:1px dashed #C2C2C0;border-radius:6px;color:var(--mute);font-family:var(--kps)!important;font-size:30px}
+.kp-rt{font-family:var(--kps)!important;font-size:22px;line-height:1.1;letter-spacing:-.3px;min-width:0}
+.kp-chip{justify-self:start;padding:4px 10px;border-radius:9999px;font-size:11px;font-weight:500;letter-spacing:.04em;border:1px dashed var(--mute);color:#3A3A3A}
+.kp-row[data-st=landed] .kp-chip{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.kp-row[data-st=boarding] .kp-chip{background:var(--red);color:var(--paper);border-color:var(--red)}
+.kp-row.is-act[data-st=landed] .kp-chip,.kp-row[data-st=landed]:hover .kp-chip{border-color:var(--paper)}
+.kp-go-link{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ink)}
+.kp-go-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}
+/* motion: passport opens, passes fly out */
+.kp.kp-js:not(.kp-go) .kp-cover{transform:perspective(1400px) rotateY(0)}
+.kp.kp-js:not(.kp-go) .kp-fly{opacity:0}
+.kp.kp-go .kp-cover{animation:kp-open 2.4s .5s cubic-bezier(.65,0,.35,1) both}
+.kp.kp-go .kp-fly{animation:kp-fly .9s var(--fd) cubic-bezier(.2,.9,.25,1.05) both}
+@keyframes kp-open{from{transform:perspective(1400px) rotateY(0)}to{transform:perspective(1400px) rotateY(-178deg)}}
+@keyframes kp-fly{0%{transform:translate(var(--fx),-520px) rotate(calc(var(--r) * -8)) scale(.3);opacity:.2}60%{opacity:1}100%{transform:none;opacity:1}}
+@media (max-width:980px){
+  .kp-top{flex-direction:column;align-items:stretch}
+  .kp .kp-ttl{font-size:44px!important}
+  .kp-stage{display:flex;height:auto;overflow-x:auto;scroll-snap-type:x mandatory;gap:22px;padding:8px 4px 28px;-webkit-overflow-scrolling:touch}
+  .kp-tk,.kp.has-act .kp-tk,.kp.has-act .kp-tk.is-act{position:relative;left:auto;top:auto;transform:none;opacity:1;filter:none;flex:0 0 68%;width:auto;max-width:260px;scroll-snap-align:center}
+  @keyframes kp-fly{0%{transform:translateY(40px);opacity:0}100%{transform:none;opacity:1}}
+  .kp-row{grid-template-columns:24px 88px minmax(0,1fr)!important}
+  .kp-rd,.kp-row .kp-chip{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .kp *,.kp.kp-go .kp-cover,.kp.kp-go .kp-fly{animation:none!important;transition:none!important}
+  .kp.kp-js .kp-cover{transform:perspective(1400px) rotateY(-178deg)}
+  .kp.kp-js .kp-fly{opacity:1}
+}
+</style>
+<div class="kp-wrap">
+  <div class="kp-top">
+    <div class="kp-intro">
+      <div class="kp-kick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#kh-star" fill="#DD1E26"/></svg><span>{{ s.kicker | escape }}</span></div>
+      <h2 class="kp-ttl" id="kp-t-{{ section.id }}">{{ s.h1 | escape }} <em>{{ s.h2 | escape }}</em></h2>
+      <p class="kp-lead"><span>{{ s.lead1 | escape }}</span><span>{{ s.lead2 | escape }}</span></p>
+      {%- if s.replay != blank -%}<button type="button" class="kp-replay" data-kp-replay>{{ s.replay | escape }}</button>{%- endif -%}
+    </div>
+    <div class="kp-pp" role="group" aria-label="KOLLAB passport">
+      <div class="kp-book">
+        <div class="kp-pl">
+          <span class="kp-mini">Passport · 여권</span>
+          <span class="kp-brand">KOLLAB</span>
+          <dl class="kp-dl"><dt>Issued</dt><dd>{{ s.issued | escape }}</dd><dt>Since</dt><dd>{{ s.since | escape }}</dd><dt>Holder</dt><dd>You</dd></dl>
+          <div class="kp-mrz">P&lt;KOLLAB&lt;&lt;LOS&lt;ANGELES&lt;&lt;&lt;&lt;&lt;&lt;<br>K0LLAB2026LAX&lt;&lt;&lt;{{ n }}STOPS&lt;&lt;&lt;</div>
+        </div>
+        <div class="kp-pr">
+          {{ slots }}
+          {%- if n < 6 -%}<div class="kp-star" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#kh-star" fill="url(#kh-ch)"/></svg></div>{%- endif -%}
+          <div class="kp-cover" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#kh-star" fill="url(#kh-ch)"/></svg><span class="a">KOLLAB</span><span class="b">Passport</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kp-stage" data-kp-stage style="--n:{{ n | at_least: 1 }}">{{ tickets }}</div>
+  <div class="kp-log">
+    <div class="kp-loghead"><h3 class="kp-logt">{{ s.log_title | escape }}</h3><span class="kp-lognote">{{ s.log_note | escape }}</span></div>
+    {{ rows }}
+  </div>
+</div>
+</section>
+<script>
+(function(){
+  function init(root){
+    if(!root||root.dataset.kpInit)return;root.dataset.kpInit='1';
+    var tks=[].slice.call(root.querySelectorAll('.kp-tk')),rows=[].slice.call(root.querySelectorAll('.kp-row')),slots=[].slice.call(root.querySelectorAll('.kp-slot'));
+    var now=Date.now(),reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,timer=null,act=-1;
+    tks.forEach(function(t,i){
+      var e=t.dataset.end;if(!e||t.dataset.st==='landed')return;
+      var end=new Date(e+'T23:59:59');if(isNaN(end)||now<=end.getTime())return;
+      [t,rows[i],slots[i]].forEach(function(el){if(el)el.dataset.st='landed'});
+      root.querySelectorAll('.kp-tk[data-i="'+i+'"] [data-kp-lbl],.kp-row[data-i="'+i+'"] [data-kp-lbl]').forEach(function(x){x.textContent=root.dataset.lblLanded});
+      var s1=slots[i]&&slots[i].querySelector('[data-kp-slbl]');if(s1)s1.textContent='LANDED';
+      var a=t.querySelector('[data-kp-cta]');if(a&&t.dataset.recap){a.href=t.dataset.recap;a.textContent=root.dataset.recapLabel}
+    });
+    function nextIdx(){for(var i=0;i<tks.length;i++){if(tks[i].dataset.st==='boarding')return i}return 0}
+    function setAct(i){
+      if(i===act||!tks[i])return;act=i;root.classList.add('has-act');
+      [tks,rows,slots].forEach(function(list){list.forEach(function(el,j){el.classList.toggle('is-act',j===i)})});
+      tks.forEach(function(t,j){var v=t.querySelector('video');if(j===i){t.classList.add('seen');if(v){var p=v.play();if(p&&p.catch)p.catch(function(){})}}else if(v){v.pause()}});
+    }
+    tks.forEach(function(t,i){t.addEventListener('mouseenter',function(){setAct(i)});var b=t.querySelector('[data-kp-play]');if(b)b.addEventListener('click',function(){setAct(i)})});
+    rows.forEach(function(r,i){['mouseenter','focus','click'].forEach(function(ev){r.addEventListener(ev,function(){setAct(i)})})});
+    var stage=root.querySelector('[data-kp-stage]');if(stage)stage.addEventListener('mouseleave',function(){setAct(nextIdx())});
+    function go(){clearTimeout(timer);root.classList.add('kp-go');timer=setTimeout(function(){setAct(nextIdx())},reduce?0:3700)}
+    var rp=root.querySelector('[data-kp-replay]');
+    if(rp)rp.addEventListener('click',function(){root.classList.remove('kp-go','has-act');act=-1;tks.forEach(function(t){t.classList.remove('is-act','seen')});void root.offsetWidth;go()});
+    if(reduce||!('IntersectionObserver' in window)){go();return}
+    root.classList.add('kp-js');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){io.disconnect();go()}})},{threshold:.2});
+    io.observe(root);
+  }
+  document.querySelectorAll('[data-kp]').forEach(init);
+  document.addEventListener('shopify:section:load',function(e){init(e.target.querySelector('[data-kp]'))});
+})();
+</script>
+{% schema %}
+{"name":"KOLLAB Home · Passport","tag":"div","class":"kpass","max_blocks":6,
+"settings":[
+{"type":"text","id":"kicker","label":"윗줄 (빨간 작은 글씨)","default":"Where we've landed · Where we fly next"},
+{"type":"text","id":"h1","label":"제목 (검정)","default":"One"},
+{"type":"text","id":"h2","label":"제목 (빨강 이탤릭)","default":"passport."},
+{"type":"text","id":"lead1","label":"설명 1","default":"Every KOLLAB pop-up earns a stamp."},
+{"type":"text","id":"lead2","label":"설명 2","default":"Hover a ticket to relive the moment, then come collect the next one."},
+{"type":"text","id":"replay","label":"다시보기 버튼 (비우면 숨김)","default":"Replay boarding"},
+{"type":"text","id":"issued","label":"여권: Issued","default":"Los Angeles"},
+{"type":"text","id":"since","label":"여권: Since","default":"2026"},
+{"type":"text","id":"from","label":"출발 공항 코드","default":"LAX"},
+{"type":"text","id":"lbl_landed","label":"지난 행사 표시","default":"Landed"},
+{"type":"text","id":"lbl_boarding","label":"다가오는 행사 표시","default":"Now boarding"},
+{"type":"text","id":"recap_label","label":"지난 행사 버튼","default":"Read the recap"},
+{"type":"text","id":"no_photo","label":"사진 없을 때 문구","default":"Photo after landing"},
+{"type":"text","id":"log_title","label":"목록 제목","default":"Flight log"},
+{"type":"text","id":"log_note","label":"목록 설명","default":"Past stops move to “Landed” on their own after the last day."}
+],
+"blocks":[{"type":"event","name":"이벤트 (탑승권)","settings":[
+{"type":"text","id":"title","label":"이벤트 이름","default":"Event name"},
+{"type":"text","id":"code","label":"도착 코드 (예: DFW, ATL, NYC)","default":"LAX"},
+{"type":"text","id":"city","label":"도시","default":"Los Angeles"},
+{"type":"text","id":"date_label","label":"티켓 날짜 (짧게)","default":"Dec 5"},
+{"type":"text","id":"dates_full","label":"목록 날짜 (연도 포함)","default":"Dec 5, 2026"},
+{"type":"text","id":"month_label","label":"여권 도장 날짜","default":"DEC 2026"},
+{"type":"text","id":"end_date","label":"마지막 날 (YYYY-MM-DD)","info":"이 날이 지나면 자동으로 Landed로 바뀝니다. 비우면 '예정' 표시."},
+{"type":"text","id":"later_label","label":"날짜 미정일 때 표시","default":"Coming 2027"},
+{"type":"article","id":"article","label":"Journal 글 연결","info":"고르면 사진·링크가 글에서 자동으로 들어옵니다."},
+{"type":"image_picker","id":"image","label":"티켓 사진 (비우면 글 대표 사진)"},
+{"type":"image_picker","id":"hover_image","label":"마우스 올렸을 때 사진"},
+{"type":"video","id":"video","label":"마우스 올렸을 때 영상 (5–8초, 소리 없이)"},
+{"type":"text","id":"cta_label","label":"버튼 글자 (예정 행사)","default":"Join the list"},
+{"type":"url","id":"cta_link","label":"버튼 링크 (예정 행사)"}
+]}],
+"presets":[{"name":"KOLLAB Home · Passport","blocks":[{"type":"event"},{"type":"event"},{"type":"event"}]}]}
+{% endschema %}

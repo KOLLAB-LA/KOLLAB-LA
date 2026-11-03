@@ -1,5 +1,12 @@
 {%- render 'kollab-home-head' -%}
 {%- assign s = section.settings -%}
+<style>
+.khome .panel .grid4{grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.khome .panel .grid4>.card:nth-child(n+6){display:none}
+.khome .panel .grid4 .card h3{font-size:18px}
+@media (max-width:1000px){.khome .panel .grid4{display:flex;gap:14px;margin-top:28px;padding:16px 12px 18px 2px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}.khome .panel .grid4::-webkit-scrollbar{display:none}.khome .panel .grid4>.card{flex:0 0 31%;scroll-snap-align:start}}
+@media (max-width:700px){.khome .panel .grid4>.card{flex-basis:64%}}
+</style>
 <div class="cats" aria-label="Shop by category"><div class="row" data-dup>
 {%- if s.cats_menu != blank -%}
 {%- for l in s.cats_menu.links -%}<a class="cat foil" href="{{ l.url }}"><svg viewBox="0 0 24 24"><use href="#kh-star" fill="#E3001B"/></svg>{{ l.title | escape }}</a>{%- endfor -%}
