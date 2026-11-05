@@ -16,17 +16,39 @@
   form[action*="/cart/add"] .qty,
   form[action*="/cart/add"] .cta2,
   #kd-buy, #kp-buy, #km-buy { display: none !important; }
-  .ksp-off,
-  .ksp-off:hover {
-    opacity: .55 !important;
-    cursor: not-allowed !important;
+  /* paused button look: solid, calm, no hover motion */
+  .ksp-off, .ksp-off:hover, .ksp-off:focus {
+    opacity: 1 !important;
+    cursor: default !important;
     pointer-events: none !important;
-    white-space: normal !important;
+    transform: none !important;
+    box-shadow: none !important;
+    background: #0A0A0A !important;
+    border-color: #0A0A0A !important;
+    color: #fff !important;
+    white-space: nowrap !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+  }
+  /* brand PDPs (DE:MAF / Ciel / MUZMAK): qty + buy-now hidden, button spans the row */
+  form[action*="/cart/add"].buy { grid-template-columns: 1fr !important; grid-template-rows: 54px !important; }
+  form[action*="/cart/add"].buy .ksp-off { grid-column: 1 / -1 !important; grid-row: 1 !important; width: 100% !important; }
+  /* main PDP (nest-wip-v2) */
+  .nwip-qty-row .ksp-off { flex: 1 1 auto !important; width: 100% !important; }
+  /* product-card pills */
+  [data-add].ksp-off { font-size: 12px !important; padding: 12px 18px !important; letter-spacing: .06em !important; }
+  @media (max-width: 749px) {
+    .ksp-off { font-size: 12px !important; letter-spacing: .05em !important; padding-left: 12px !important; padding-right: 12px !important; }
+    [data-add].ksp-off { font-size: 10.5px !important; padding: 10px 12px !important; letter-spacing: .04em !important; }
   }
 </style>
 <script>
 (function () {
   var LABEL = {{ ksp_label | json }};
+  var SHORT = 'Shipping Dec 2026';
+  var SHORT_SEL = '[data-add], .nwip-sticky-btn, #kd-sticky, #kp-sticky, #km-sticky';
   var SEL = [
     'form[action*="/cart/add"] button[type="submit"]',
     'form[action*="/cart/add"] input[type="submit"]',
@@ -38,12 +60,13 @@
   ].join(',');
 
   function lock(el) {
-    if (el.dataset.ksp === '1' && el.textContent.trim() === LABEL) return;
+    var txt = el.matches(SHORT_SEL) ? SHORT : LABEL;
+    if (el.dataset.ksp === '1' && (el.value || el.textContent).trim() === txt) return;
     el.dataset.ksp = '1';
     el.disabled = true;
     el.removeAttribute('onclick');
     el.classList.add('ksp-off');
-    if (el.tagName === 'INPUT') el.value = LABEL; else el.textContent = LABEL;
+    if (el.tagName === 'INPUT') el.value = txt; else el.textContent = txt;
   }
   function run() { document.querySelectorAll(SEL).forEach(lock); }
 
