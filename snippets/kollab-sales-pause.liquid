@@ -1,0 +1,79 @@
+{%- comment -%}
+  KOLLAB sales pause (store move, Nov–Dec 2026).
+  Disables every add-to-cart / buy / checkout control site-wide.
+  To reopen: remove the `render 'kollab-sales-pause'` line in layout/theme.liquid.
+{%- endcomment -%}
+{%- assign ksp_label = 'Shipping Available December 2026' -%}
+<style>
+  .shopify-payment-button,
+  .nwip-more-payment,
+  .nwip-dynamic-checkout,
+  .quick-add,
+  quick-add-modal,
+  [aria-label="quick-add"],
+  .nwip-qty,
+  #nwipQtyInput { display: none !important; }
+  .ksp-off,
+  .ksp-off:hover {
+    opacity: .55 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    white-space: normal !important;
+  }
+</style>
+<script>
+(function () {
+  var LABEL = {{ ksp_label | json }};
+  var SEL = [
+    'form[action*="/cart/add"] button[type="submit"]',
+    'form[action*="/cart/add"] input[type="submit"]',
+    '#nwipAtc', '.nwip-sticky-btn',
+    '#kp-atc', '#km-atc', '#kd-atc',
+    'button[name="add"]', 'button[name="checkout"]', 'input[name="checkout"]'
+  ].join(',');
+
+  function lock(el) {
+    if (el.dataset.ksp === '1' && el.textContent.trim() === LABEL) return;
+    el.dataset.ksp = '1';
+    el.disabled = true;
+    el.removeAttribute('onclick');
+    el.classList.add('ksp-off');
+    if (el.tagName === 'INPUT') el.value = LABEL; else el.textContent = LABEL;
+  }
+  function run() { document.querySelectorAll(SEL).forEach(lock); }
+
+  // Block any submit to cart/add or checkout
+  document.addEventListener('submit', function (e) {
+    var a = (e.target.getAttribute('action') || '');
+    if (/\/cart\/add|\/checkout/.test(a) || (e.submitter && e.submitter.name === 'checkout')) {
+      e.preventDefault(); e.stopImmediatePropagation();
+    }
+  }, true);
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest(SEL + ',a[href*="/checkout"]');
+    if (t) { e.preventDefault(); e.stopImmediatePropagation(); }
+  }, true);
+
+  // Block AJAX add-to-cart
+  var _fetch = window.fetch;
+  window.fetch = function (input) {
+    var u = typeof input === 'string' ? input : (input && input.url) || '';
+    if (/\/cart\/add/.test(u)) return Promise.reject(new Error('Sales paused'));
+    return _fetch.apply(this, arguments);
+  };
+  var _open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function (m, u) {
+    if (/\/cart\/add/.test(u || '')) { this._kspBlocked = true; }
+    return _open.apply(this, arguments);
+  };
+  var _send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = function () {
+    if (this._kspBlocked) { this.abort(); return; }
+    return _send.apply(this, arguments);
+  };
+
+  run();
+  document.addEventListener('DOMContentLoaded', run);
+  new MutationObserver(run).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+})();
+</script>

@@ -27,6 +27,7 @@
     },
     "kh_shop": {
       "type": "kollab-home-shop",
+      "disabled": true,
       "settings": {
         "cats_menu": "",
         "cats": "Moisturizers\nCleansers & Exfoliators\nSerums & Essence\nMasks & Treatments\nEye Care\nPrimer & Makeup\nLip Care\nSPF\nBody Care\nBlotting Papers & Tools",
