@@ -12,7 +12,10 @@
   quick-add-modal,
   [aria-label="quick-add"],
   .nwip-qty,
-  #nwipQtyInput { display: none !important; }
+  #nwipQtyInput,
+  form[action*="/cart/add"] .qty,
+  form[action*="/cart/add"] .cta2,
+  #kd-buy, #kp-buy, #km-buy { display: none !important; }
   .ksp-off,
   .ksp-off:hover {
     opacity: .55 !important;
@@ -29,6 +32,8 @@
     'form[action*="/cart/add"] input[type="submit"]',
     '#nwipAtc', '.nwip-sticky-btn',
     '#kp-atc', '#km-atc', '#kd-atc',
+    '#kp-sticky', '#km-sticky', '#kd-sticky',
+    '[data-add]',
     'button[name="add"]', 'button[name="checkout"]', 'input[name="checkout"]'
   ].join(',');
 
