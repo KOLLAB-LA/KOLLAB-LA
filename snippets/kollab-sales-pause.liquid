@@ -36,7 +36,8 @@
   form[action*="/cart/add"].buy { grid-template-columns: 1fr !important; grid-template-rows: 54px !important; }
   form[action*="/cart/add"].buy .ksp-off { grid-column: 1 / -1 !important; grid-row: 1 !important; width: 100% !important; }
   /* main PDP (nest-wip-v2) */
-  .nwip-qty-row .ksp-off { flex: 1 1 auto !important; width: 100% !important; }
+  #nwip-form { grid-template-columns: 1fr !important; grid-template-rows: auto !important; row-gap: 0 !important; }
+  #nwip-form .nwip-atc.ksp-off { grid-column: 1 / -1 !important; grid-row: auto !important; width: 100% !important; }
   /* product-card pills */
   [data-add].ksp-off { font-size: 12px !important; padding: 12px 18px !important; letter-spacing: .06em !important; }
   @media (max-width: 749px) {
