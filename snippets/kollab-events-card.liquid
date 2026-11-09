@@ -1,0 +1,27 @@
+{%- comment -%} One event card for sections/kollab-events-grid.liquid. Params: block, forloop_index, more {%- endcomment -%}
+{%- assign b = block.settings -%}
+{%- assign art = b.article -%}
+{%- assign href = b.url -%}
+{%- assign img = b.image -%}
+{%- if art != blank -%}
+  {%- if href == blank -%}{%- assign href = art.url -%}{%- endif -%}
+  {%- if img == blank and art.image -%}{%- assign img = art.image -%}{%- endif -%}
+{%- endif -%}
+{%- if href == blank -%}{%- assign href = '/blogs/event' -%}{%- endif -%}
+<a class="card{% if b.hot and b.kind == 'next' %} hot{% endif %}{% if more %} more{% endif %}" href="{{ href }}" aria-label="{{ b.title | escape }}" {{ block.shopify_attributes }}>
+  <div class="date"><b>{{ b.day | escape }}</b><small>{{ b.month | escape }}</small></div>
+  {%- if b.status != blank -%}<span class="pill {{ b.status_style }}">{{ b.status | escape }}</span>{%- endif -%}
+  <div class="poster">
+    {%- if img -%}
+      <img src="{{ img | image_url: width: 900 }}" srcset="{{ img | image_url: width: 600 }} 600w, {{ img | image_url: width: 900 }} 900w, {{ img | image_url: width: 1400 }} 1400w" sizes="(max-width: 700px) 100vw, 400px" alt="{{ b.title | escape }}" loading="lazy" width="900" height="675">
+    {%- else -%}
+      <span class="ph">{{ b.title | escape }}</span>
+    {%- endif -%}
+  </div>
+  <div class="body">
+    <h3>{{ b.title | escape }}</h3>
+    <div class="meta">{%- if b.city != blank -%}<span>{{ b.city | escape }}</span>{%- endif -%}{%- if b.date_full != blank -%}<span>{{ b.date_full | escape }}</span>{%- endif -%}</div>
+    {%- if b.desc != blank -%}<p>{{ b.desc | escape }}</p>{%- endif -%}
+    <div class="go"><span>{{ b.cta | default: 'Read more' | escape }}</span><i>→</i></div>
+  </div>
+</a>

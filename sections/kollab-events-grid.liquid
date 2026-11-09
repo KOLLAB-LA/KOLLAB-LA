@@ -1,0 +1,155 @@
+{%- comment -%} KOLLAB · Events grid (concept A) · Next events in color, past events in grayscale, "see all" reveals the archive. Built 2026-11-06. {%- endcomment -%}
+{%- render 'kollab-home-head' -%}
+{%- assign s = section.settings -%}
+{%- assign peek = s.peek | default: 4 -%}
+<style>
+.kev{--ink:#0A0A0A;--red:#E3001B;--mute:#6b6b6b;--line:#0A0A0A;--serif:'Instrument Serif','Times New Roman',serif;--sans:Enkel,'Hanken Grotesk',system-ui,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace;background:#fff;color:var(--ink);font-family:var(--sans);padding:72px 0 48px;line-height:1.45}
+.kev *{box-sizing:border-box}
+.kev .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.kev a{color:inherit;text-decoration:none}
+.kev h2,.kev h3{margin:0;text-wrap:balance;text-transform:none!important;letter-spacing:0!important}
+.kev .i{font-style:italic;color:var(--red)}
+.kev .kick{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.kev .kstar{width:14px;height:14px;fill:var(--red);flex:none}
+.kev .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:30px}
+.kev .head h2{font-family:var(--serif)!important;font-weight:400!important;font-size:clamp(42px,6vw,78px)!important;line-height:.98!important;letter-spacing:-.02em!important;color:var(--ink)!important}
+.kev .head h2 span{display:block}
+.kev .lead{max-width:38ch;color:var(--mute);font-size:15px;margin:0}
+.kev .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.kev .card{display:flex;flex-direction:column;border:1.5px solid var(--line);background:#fff;position:relative;transition:transform .25s,box-shadow .25s}
+.kev .card:hover{transform:translate(-4px,-4px);box-shadow:10px 10px 0 var(--red)}
+.kev .card.hot{box-shadow:10px 10px 0 var(--red)}
+.kev .card.hot:hover{box-shadow:14px 14px 0 var(--red)}
+.kev .poster{aspect-ratio:4/3;width:100%;border-bottom:1.5px solid var(--line);background:var(--ink) center/cover no-repeat;color:#fff;position:relative;overflow:hidden;display:grid;place-items:center}
+.kev .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.kev .poster .ph{font-family:var(--serif);font-size:clamp(28px,4vw,44px);line-height:1;text-align:center;padding:16px;position:relative;z-index:1}
+.kev .date{position:absolute;top:14px;left:14px;background:#fff;border:1.5px solid var(--line);padding:8px 10px;text-align:center;line-height:1;z-index:2;min-width:58px}
+.kev .date b{display:block;font-family:var(--serif);font-size:30px;font-weight:400}
+.kev .date small{font-size:10px;letter-spacing:.14em;font-weight:700}
+.kev .pill{position:absolute;top:14px;right:14px;z-index:2;display:inline-flex;align-items:center;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;background:var(--red);color:#fff;letter-spacing:.04em}
+.kev .pill.blk{background:var(--ink)}
+.kev .pill.o{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.kev .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.kev .body h3{font-family:var(--serif)!important;font-weight:400!important;font-size:28px!important;line-height:1.05!important;color:var(--ink)!important}
+.kev .meta{font-family:var(--mono);font-size:12px;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
+.kev .body p{margin:0;font-size:14px;max-width:40ch}
+.kev .go{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px dashed #bbb;font-weight:700;font-size:14px}
+.kev .go i{font-style:normal;color:var(--red)}
+.kev .past{margin-top:64px;padding-top:34px;border-top:1.5px solid var(--line)}
+.kev .past .ph2{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.kev .past h2{font-family:var(--serif)!important;font-weight:400!important;font-size:clamp(30px,4vw,44px)!important;line-height:1!important;letter-spacing:-.01em!important;color:#777!important}
+.kev .past h2 .i{color:#999}
+.kev .past .grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.kev .past .card{filter:grayscale(1);opacity:.55;transition:filter .3s,opacity .3s,transform .25s,box-shadow .25s}
+.kev .past .card:hover,.kev .past .card:focus-visible{filter:none;opacity:1;box-shadow:10px 10px 0 var(--red)}
+.kev .past .poster{aspect-ratio:1/1}
+.kev .past .poster .ph{font-size:clamp(20px,2.4vw,26px)}
+.kev .past .date{padding:6px 8px;min-width:48px}.kev .past .date b{font-size:22px}
+.kev .past .body{padding:14px;gap:6px}
+.kev .past .body h3{font-size:20px!important}
+.kev .past .meta{font-size:11px}
+.kev .past .go{font-size:12px;padding-top:8px}
+.kev .past .card.more{display:none}.kev.open .past .card.more{display:flex}
+.kev .pf{display:flex;justify-content:center;padding-top:28px}
+.kev .btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:14px 26px;font-weight:700;font-size:15px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;font-family:inherit;transition:background .2s,color .2s}
+.kev .btn:hover,.kev .btn:focus-visible{background:var(--ink);color:#fff;outline:none}
+.kev .btn .ar{transition:transform .3s}.kev.open .btn .ar{transform:rotate(180deg)}
+.kev .pf.hide{display:none}
+@media(prefers-reduced-motion:reduce){.kev .card{transition:none}}
+</style>
+{%- assign past_count = 0 -%}
+{%- for block in section.blocks -%}{%- if block.settings.kind == 'past' -%}{%- assign past_count = past_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+<section class="kev" id="events" data-kev>
+<div class="wrap">
+  <div class="head">
+    <div>
+      <div class="kick"><svg class="kstar" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>{{ s.kicker | escape }}</div>
+      <h2 style="margin-top:10px"><span>{{ s.h1 | escape }}</span><span class="i">{{ s.h2 | escape }}</span></h2>
+    </div>
+    {%- if s.lead != blank -%}<p class="lead">{{ s.lead | escape }}</p>{%- endif -%}
+  </div>
+
+  <div class="grid">
+  {%- for block in section.blocks -%}
+    {%- if block.settings.kind == 'next' -%}{%- render 'kollab-events-card', block: block, more: false -%}{%- endif -%}
+  {%- endfor -%}
+  </div>
+
+  {%- if past_count > 0 -%}
+  <div class="past">
+    <div class="ph2">
+      <div>
+        <div class="kick" style="color:#888"><svg class="kstar" style="fill:#999" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>{{ s.past_kicker | escape }}</div>
+        <h2 style="margin-top:8px">{{ s.past_h1 | escape }} <span class="i">{{ s.past_h2 | escape }}</span></h2>
+      </div>
+      {%- if s.past_note != blank -%}<span class="lead" style="font-size:13px">{{ s.past_note | escape }}</span>{%- endif -%}
+    </div>
+    <div class="grid">
+    {%- assign pi = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.settings.kind == 'past' -%}
+        {%- assign pi = pi | plus: 1 -%}
+        {%- assign more = false -%}
+        {%- if pi > peek -%}{%- assign more = true -%}{%- endif -%}
+        {%- render 'kollab-events-card', block: block, more: more -%}
+      {%- endif -%}
+    {%- endfor -%}
+    </div>
+    <div class="pf{% if past_count <= peek %} hide{% endif %}">
+      <button type="button" class="btn" data-kev-toggle data-open="{{ s.btn_open | escape }}" data-close="{{ s.btn_close | escape }}"><span class="lbl">{{ s.btn_open | escape }}</span><span class="ar">↓</span></button>
+    </div>
+  </div>
+  {%- endif -%}
+</div>
+</section>
+<script>
+(function(){
+  function init(root){
+    var b=root.querySelector('[data-kev-toggle]');if(!b||b.dataset.ready)return;b.dataset.ready='1';
+    b.addEventListener('click',function(){var o=root.classList.toggle('open');b.querySelector('.lbl').textContent=o?b.dataset.close:b.dataset.open;b.setAttribute('aria-expanded',o?'true':'false');});
+  }
+  document.querySelectorAll('[data-kev]').forEach(init);
+  document.addEventListener('shopify:section:load',function(e){e.target.querySelectorAll('[data-kev]').forEach(init);});
+})();
+</script>
+{% schema %}
+{
+  "name": "KOLLAB · Events grid",
+  "tag": "div",
+  "class": "kollab-events-grid",
+  "max_blocks": 30,
+  "settings": [
+    {"type":"text","id":"kicker","label":"상단 작은 제목","default":"Next events"},
+    {"type":"text","id":"h1","label":"제목 1줄","default":"Where we"},
+    {"type":"text","id":"h2","label":"제목 2줄 (빨강 이탤릭)","default":"fly next."},
+    {"type":"text","id":"lead","label":"설명","default":"Three stops are boarding now. Tap a card for details, tickets or the brand application."},
+    {"type":"header","content":"Past events"},
+    {"type":"text","id":"past_kicker","label":"작은 제목","default":"Past events"},
+    {"type":"text","id":"past_h1","label":"제목 1줄","default":"Where we've"},
+    {"type":"text","id":"past_h2","label":"제목 2줄 (이탤릭)","default":"landed."},
+    {"type":"text","id":"past_note","label":"오른쪽 한 줄","default":"Hover a card to bring the color back."},
+    {"type":"range","id":"peek","label":"처음에 보여줄 지난 이벤트 수","min":2,"max":8,"step":1,"default":4},
+    {"type":"text","id":"btn_open","label":"버튼 (닫힘)","default":"Past events · see all"},
+    {"type":"text","id":"btn_close","label":"버튼 (열림)","default":"Show fewer"}
+  ],
+  "blocks": [
+    {"type":"event","name":"이벤트","settings":[
+      {"type":"select","id":"kind","label":"구분","options":[{"value":"next","label":"Next (컬러, 상단)"},{"value":"past","label":"Past (흑백, 하단)"}],"default":"next"},
+      {"type":"text","id":"title","label":"이벤트 이름","default":"Event name"},
+      {"type":"text","id":"day","label":"날짜 숫자 (스탬프)","default":"05","info":"예: 05, 16, 2027"},
+      {"type":"text","id":"month","label":"월 (스탬프)","default":"DEC","info":"예: DEC, JUN, YEAR"},
+      {"type":"text","id":"date_full","label":"날짜 전체","default":"Dec 5, 2026"},
+      {"type":"text","id":"city","label":"도시 · 장소","default":"LAX · Los Angeles"},
+      {"type":"text","id":"status","label":"상태 라벨","default":"Now boarding","info":"비우면 라벨 없음"},
+      {"type":"select","id":"status_style","label":"라벨 색","options":[{"value":"red","label":"빨강"},{"value":"blk","label":"검정"},{"value":"o","label":"흰색 테두리"}],"default":"red"},
+      {"type":"checkbox","id":"hot","label":"빨간 그림자 강조 (Next만)","default":false},
+      {"type":"image_picker","id":"image","label":"포스터 사진","info":"비우면 아티클 썸네일, 그것도 없으면 검정 패널"},
+      {"type":"textarea","id":"desc","label":"한 줄 설명"},
+      {"type":"article","id":"article","label":"저널 글 (링크·썸네일 자동)"},
+      {"type":"url","id":"url","label":"링크 (글 대신 쓸 때)"},
+      {"type":"text","id":"cta","label":"버튼 문구","default":"Read the recap"}
+    ]}
+  ],
+  "presets": [{"name":"KOLLAB · Events grid"}]
+}
+{% endschema %}
