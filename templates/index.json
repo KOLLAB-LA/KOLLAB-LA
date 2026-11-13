@@ -49,10 +49,9 @@
         "p1": {"type": "event", "settings": {"title": "Bloom Haus Dallas", "code": "DFW", "city": "Dallas", "date_label": "Jun 18–20", "dates_full": "Jun 18–20, 2026", "month_label": "JUN 2026", "end_date": "2026-06-20", "later_label": "Coming 2027", "article": "event/k-beauty-dallas-texas-bloom-haus-pop-up", "hover_image": "shopify://shop_images/dallas_01_compressed.jpg", "cta_label": "", "cta_link": ""}},
         "p2": {"type": "event", "settings": {"title": "Seoul Social Club", "code": "ATL", "city": "Atlanta", "date_label": "Oct 16–18", "dates_full": "Oct 16–18, 2026", "month_label": "OCT 2026", "end_date": "2026-10-18", "later_label": "Coming 2027", "article": "event/k-beauty-atlanta-seoul-social-club-ponce-city-market", "image": "shopify://shop_images/Atlanta_Pop_Up_Visual.jpg", "cta_label": "", "cta_link": ""}},
         "p3": {"type": "event", "settings": {"title": "K-Advanced Wellness Expo", "code": "LAX", "city": "Los Angeles", "date_label": "Dec 5", "dates_full": "Dec 5, 2026", "month_label": "DEC 2026", "end_date": "2026-12-05", "later_label": "Coming 2027", "image": "shopify://shop_images/KellyRidgeway_042326_Kollab_PajamaParty_130.jpg", "cta_label": "Join the list", "cta_link": "/#newsletter"}},
-        "p4": {"type": "event", "settings": {"title": "KOLLAB Station × SUKOSHI", "code": "NYC", "city": "New York", "date_label": "Dec 7 – Jan 31", "dates_full": "Dec 7, 2026 – Jan 31, 2027", "month_label": "DEC 2026", "end_date": "2027-01-31", "later_label": "Coming 2027", "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call", "cta_label": "Apply as a brand", "cta_link": "https://tally.so/r/xVXoLk"}},
-        "p5": {"type": "event", "settings": {"title": "Next stop: Miami", "code": "MIA", "city": "Miami", "date_label": "2027", "dates_full": "2027", "month_label": "2027", "end_date": "", "later_label": "Coming 2027", "cta_label": "Notify me", "cta_link": "/#newsletter"}}
+        "p4": {"type": "event", "settings": {"title": "KOLLAB Station × SUKOSHI", "code": "NYC", "city": "New York", "date_label": "Dec 7 – Jan 31", "dates_full": "Dec 7, 2026 – Jan 31, 2027", "month_label": "DEC 2026", "end_date": "2027-01-31", "later_label": "Coming 2027", "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call", "cta_label": "Apply as a brand", "cta_link": "https://tally.so/r/xVXoLk"}}
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5"],
+      "block_order": ["p1", "p2", "p3", "p4"],
       "settings": {
         "kicker": "Where we've landed · Where we fly next",
         "h1": "One",
