@@ -55,12 +55,12 @@
 </div>
 <div class="logos rv d2">
 <div class="lbl">Brands we kollab with</div>
-<div class="track" data-dup>{%- for v in shop.vendors limit: 40 -%}<span>{{ v | escape }}</span>{%- endfor -%}</div>
+{%- assign hide_list = section.settings.hide_brands | default: "" | downcase | split: "," -%}<div class="track" data-dup>{%- for v in shop.vendors limit: 40 -%}{%- assign vkey = v | downcase | strip -%}{%- assign skip = false -%}{%- for h in hide_list -%}{%- assign hk = h | strip -%}{%- if hk != "" and hk == vkey -%}{%- assign skip = true -%}{%- endif -%}{%- endfor -%}{%- unless skip -%}<span>{{ v | escape }}</span>{%- endunless -%}{%- endfor -%}</div>
 </div>
 </div>
 </section>
 {% schema %}
-{"name":"KOLLAB Home · Social","tag":"div","class":"khome","max_blocks":6,"settings":[{"type":"text","id":"ig","label":"Instagram 주소","default":"https://instagram.com/kollab_la"},{"type":"text","id":"tt","label":"TikTok 주소","default":"https://www.tiktok.com/@kollab_la"},{"type":"text","id":"yt","label":"YouTube 주소","default":"https://www.youtube.com/@kollab_la"}],
+{"name":"KOLLAB Home · Social","tag":"div","class":"khome","max_blocks":6,"settings":[{"type":"text","id":"ig","label":"Instagram 주소","default":"https://instagram.com/kollab_la"},{"type":"text","id":"tt","label":"TikTok 주소","default":"https://www.tiktok.com/@kollab_la"},{"type":"text","id":"yt","label":"YouTube 주소","default":"https://www.youtube.com/@kollab_la"},{"type":"text","id":"hide_brands","label":"브랜드 알약에서 숨길 브랜드","info":"쉼표로 구분 (예: UAHAGE, Brand B)","default":"UAHAGE"}],
 "blocks":[{"type":"tile","name":"폴라로이드 사진","settings":[
 {"type":"image_picker","id":"image","label":"사진","info":"비우면 아래 글자 타일이 나와요"},
 {"type":"text","id":"cap","label":"손글씨 캡션","default":"at the shop ♥"},
