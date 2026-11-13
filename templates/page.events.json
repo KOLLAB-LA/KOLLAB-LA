@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {"padding_top": "no-indent", "padding_bottom": "no-indent"}
+    },
+    "kev_grid": {
+      "type": "kollab-events-grid",
+      "blocks": {
+        "n1": {"type": "event", "settings": {"kind": "next", "title": "K-Advanced Wellness Expo", "day": "05", "month": "DEC", "date_full": "Dec 5, 2026", "city": "LAX · Beverly Hills", "status": "Now boarding", "status_style": "red", "hot": true, "image": "shopify://shop_images/KellyRidgeway_042326_Kollab_PajamaParty_130.jpg", "desc": "Next-gen K-wellness and aesthetic tech showcase with Korean physician demos and B2B networking.", "url": "/pages/k-wellness-b2b-expo", "cta": "Register"}},
+        "n2": {"type": "event", "settings": {"kind": "next", "title": "KOLLAB Station × SUKOSHI", "day": "07", "month": "DEC", "date_full": "Dec 7 – Jan 31", "city": "NYC · Upper East Side", "status": "Now boarding", "status_style": "red", "hot": true, "desc": "Eight weeks on a Manhattan shelf. A new K-brand every two weeks, brand call open.", "article": "event/kollab-station-sukoshi-new-york-k-beauty-brand-call", "cta": "Apply as a brand"}},
+        "n3": {"type": "event", "settings": {"kind": "next", "title": "Next stop: Miami", "day": "27", "month": "YEAR", "date_full": "2027", "city": "MIA", "status": "Coming 2027", "status_style": "blk", "hot": false, "desc": "The next city on the KOLLAB passport. Join the list to hear first.", "url": "/#newsletter", "cta": "Notify me"}},
+        "p1": {"type": "event", "settings": {"kind": "past", "title": "Seoul Social Club", "day": "16", "month": "OCT", "date_full": "Oct 16–18, 2026", "city": "ATL · Ponce City Market", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/fivealive_2.png", "article": "event/k-beauty-atlanta-seoul-social-club-ponce-city-market", "cta": "Read the recap"}},
+        "p2": {"type": "event", "settings": {"kind": "past", "title": "Bloom Haus Dallas", "day": "18", "month": "JUN", "date_full": "Jun 18–20, 2026", "city": "DFW", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/SUN04969_compressed.jpg", "article": "event/k-beauty-dallas-texas-bloom-haus-pop-up", "cta": "Read the recap"}},
+        "p3": {"type": "event", "settings": {"kind": "past", "title": "FiveAlive Meet & Greet", "day": "30", "month": "MAY", "date_full": "May 30, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/fiveALIVE_1.png", "url": "/blogs/event/fivealive-meet-and-greet-kollab-la", "cta": "Read the recap"}},
+        "p4": {"type": "event", "settings": {"kind": "past", "title": "De:maf Glass Skin Workshop", "day": "29", "month": "MAY", "date_full": "May 29, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/KellyRidgeway_052926_Kollab_DemafWorkshop-143.jpg", "url": "/blogs/event/demaf-korean-glass-skin-workshop-kollab-la", "cta": "Read the recap"}},
+        "p5": {"type": "event", "settings": {"kind": "past", "title": "Suzie K Masterclass", "day": "22", "month": "MAY", "date_full": "May 22, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/KellyRidgeway_052226_Kollab_KBeautyMasterclass_385.jpg", "url": "/blogs/event/suzie-k-k-beauty-makeup-masterclass-kollab-la", "cta": "Read the recap"}},
+        "p6": {"type": "event", "settings": {"kind": "past", "title": "Lovestreet: House of Beauty", "day": "03", "month": "MAY", "date_full": "May 3, 2026", "city": "LAX · Love Street", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/Lovestreet_1.jpg", "url": "/blogs/event/lovestreet-house-of-beauty-kollab-la", "cta": "Read the recap"}},
+        "p7": {"type": "event", "settings": {"kind": "past", "title": "BTS Bora Market", "day": "25", "month": "APR", "date_full": "Apr 25, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/Bora_market_1.jpg", "url": "/blogs/event/bts-bora-market-army-fan-event-kollab-la", "cta": "Read the recap"}},
+        "p8": {"type": "event", "settings": {"kind": "past", "title": "Slumber Party", "day": "23", "month": "APR", "date_full": "Apr 23, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/Slumber_Party_1.png", "url": "/blogs/event/slumber-party-k-beauty-pajama-night-kollab-la", "cta": "Read the recap"}},
+        "p9": {"type": "event", "settings": {"kind": "past", "title": "Wellness Week", "day": "23", "month": "JAN", "date_full": "Jan 23–25, 2026", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/Wellness_week_1.jpg", "url": "/blogs/event/wellness-week-k-beauty-self-care-pop-up-kollab-la", "cta": "Read the recap"}},
+        "p10": {"type": "event", "settings": {"kind": "past", "title": "Matcha-Con", "day": "06", "month": "DEC", "date_full": "Dec 6–7, 2025", "city": "LAX · KOLLAB LA", "status": "Landed", "status_style": "o", "image": "shopify://shop_images/MatchaCon_1.jpg", "url": "/blogs/event/matcha-con-all-about-matcha-kollab-la", "cta": "Read the recap"}}
+      },
+      "block_order": ["n1", "n2", "n3", "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"],
+      "settings": {
+        "kicker": "Next events",
+        "h1": "Where we",
+        "h2": "fly next.",
+        "lead": "Three stops are boarding now. Tap a card for details, tickets or the brand application.",
+        "past_kicker": "Past events",
+        "past_h1": "Where we've",
+        "past_h2": "landed.",
+        "past_note": "Hover a card to bring the color back.",
+        "peek": 4,
+        "btn_open": "Past events · see all",
+        "btn_close": "Show fewer"
+      }
+    }
+  },
+  "order": ["main", "kev_grid"]
+}
